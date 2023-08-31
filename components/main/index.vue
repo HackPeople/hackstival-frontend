@@ -93,7 +93,7 @@ export default {
 
     li {
       width: calc(50% - 8px);
-      background: yellow;
+      background: white;
       height: 215px;
       text-align: center;
       border: 1px solid #ccc;

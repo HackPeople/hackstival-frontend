@@ -20,7 +20,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .main {
-  background-color: #fff;
+  background-color: #FBFBFB;
   width: 500px;
   margin: auto;
   height: 100vh;
