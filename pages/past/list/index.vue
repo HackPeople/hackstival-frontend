@@ -1,5 +1,5 @@
 <template>
-<div class="backgroud">
+<div>
   <CardList/>
 </div>
 </template>
@@ -10,7 +10,18 @@ export default{
     CardList
   },
   data() {
-
+    return {
+      list: []
+    }
+  },
+  mounted() {
+    this.getAllList()
+  },
+  methods: {
+    async getAllList(){
+      const response = await this.$axios.$get('/api/help/all')
+      this.lst = response
+    }
   }
 }
 </script>

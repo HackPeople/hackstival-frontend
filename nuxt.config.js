@@ -36,7 +36,34 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
+
+  // env:{
+  //   AXIOS_BASE_URL: process.env.AXIOS_BASE_URL,  //front 도메인 주소
+  //   API_DEV:process.env.API_DEV,  // backend 도메인 주소
+  //   API_DEV_CDN:process.env.API_DEV_CDN, // aws s3 cdn 주소
+  // },
+  axios: {
+    proxy:true,
+    baseURL: 'http://localhost:3000',
+    proxyHeaders: false,
+    credentials: false
+  },
+  proxy: {
+    '/api/': {
+      target: 'http://3.36.117.65:8080/',
+      pathRewrite: { '^/api': '' },
+      changeOrigin: true
+    },
+    // '/cdn/': {
+    //   target: process.env.API_DEV_CDN,
+    //   pathRewrite: { '^/cdn': '' },
+    //   changeOrigin: true
+    // }
+  },
+
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
