@@ -51,7 +51,7 @@ export default {
   // },
   axios: {
     proxy:true,
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://3.36.117.65:3000',
     proxyHeaders: false,
     credentials: false
   },
