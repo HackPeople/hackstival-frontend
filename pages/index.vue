@@ -1,5 +1,5 @@
 <template>
-  <img class="image" v-if="!isShow" src="~/assets/image/logo.png"/>
+  <img class="image" v-if="!isShow" src="~/assets/image/logo2.png"/>
   <Main v-else/>
 </template>
 
