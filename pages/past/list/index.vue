@@ -1,6 +1,6 @@
 <template>
 <div>
-  <CardList/>
+  <CardList :help-list="list"/>
 </div>
 </template>
 <script>
@@ -20,7 +20,7 @@ export default{
   methods: {
     async getAllList(){
       const response = await this.$axios.$get('/api/help/all')
-      this.lst = response
+      this.list = response
     }
   }
 }
