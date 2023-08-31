@@ -33,6 +33,13 @@
         <span v-else class="status" :class="getStatusColor(helpInfo.requestStatus)">{{getStatusName(helpInfo.requestStatus)}}</span>
       </div>
     </div>
+
+    <b-modal id="bv-modal-example" hide-footer>
+      <div class="d-block text-center">
+        <h3>신청되었습니다! 승인을 기다려 주세요</h3>
+      </div>
+      <b-button class="mt-3" block @click="close">확인</b-button>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -118,6 +125,12 @@ export default{
     },
     accept(helpInfo) {
       this.$axios.put(`/api/help/accept?helpId=${helpInfo.id}&helperId=2`)
+      this.$bvModal.show('bv-modal-example')
+    },
+    close() {
+      this.$bvModal.hide('bv-modal-example')
+      // this.$router.push('/')
+      location.reload()
     }
   }
 }
