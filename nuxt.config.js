@@ -50,23 +50,23 @@ export default {
   //   API_DEV_CDN:process.env.API_DEV_CDN, // aws s3 cdn 주소
   // },
   axios: {
-    proxy:false,
+    proxy:true,
     baseURL: 'http://localhost:3000',
     proxyHeaders: false,
     credentials: false
   },
-  // proxy: {
-  //   '/api/': {
-  //     target: 'http://3.36.117.65:8080/',
-  //     pathRewrite: { '^/api': '' },
-  //     changeOrigin: true
-  //   },
-  //   // '/cdn/': {
-  //   //   target: process.env.API_DEV_CDN,
-  //   //   pathRewrite: { '^/cdn': '' },
-  //   //   changeOrigin: true
-  //   // }
-  // },
+  proxy: {
+    '/api/': {
+      target: 'http://localhost:8080/',
+      pathRewrite: { '^/api': '' },
+      changeOrigin: true
+    },
+    // '/cdn/': {
+    //   target: process.env.API_DEV_CDN,
+    //   pathRewrite: { '^/cdn': '' },
+    //   changeOrigin: true
+    // }
+  },
 
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
