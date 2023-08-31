@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="main">
     <Header />
     <Nuxt />
     <Footer />
@@ -16,3 +16,12 @@ export default {
   }
 }
 </script>
+<style>
+.main {
+  background-color: #fff;
+  width: 500px;
+  margin: auto;
+  height: 100vh;
+  padding-top: 20px;
+}
+</style>
