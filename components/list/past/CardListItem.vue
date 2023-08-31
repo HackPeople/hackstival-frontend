@@ -10,7 +10,7 @@
       <div class="card-content-wrap">
         <div class="card-desc">{{helpInfo.content}}</div>
         <div class="address">
-          <span>{{helpInfo.startAddress.siName}}</span>
+<!--          <span>{{helpInfo.startAddress.siName}}</span>-->
           <span v-if="helpInfo.moveType === 'ROUND'" class="material-icons address-icon">
             arrow_forward
           </span>
@@ -114,7 +114,7 @@ export default{
 .list-item{
   display: flex;
   background-color: white;
-  height: 80px;
+  height: 100px;
   padding: 15px 10px 15px 10px;
   margin: 10px 20px 10px 20px;
   overflow: hidden;
