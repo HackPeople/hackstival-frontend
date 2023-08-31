@@ -1,6 +1,6 @@
 <template>
   <div class="card-group">
-    <CardListItem v-for="(help, index) in helpList" :key="index" :help-info="help"/>
+    <CardListItem v-for="(help, index) in helpList" :key="index" :help-info="help" :is-helper="isHelper"/>
   </div>
 </template>
 <script>
@@ -13,6 +13,10 @@ export default{
     helpList: {
       type: Array,
       default: () => []
+    },
+    isHelper: {
+      type: Boolean,
+      default: false
     }
   }
 }

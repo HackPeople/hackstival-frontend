@@ -21,7 +21,7 @@
     </ul>
 
     <p class="category">도움 신청 내역</p>
-    <CardList :help-list="list"/>
+    <CardList :help-list="list" is-helper/>
   </div>
 </template>
 <script>

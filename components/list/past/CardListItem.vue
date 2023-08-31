@@ -22,7 +22,13 @@
         <div class="money">용돈&nbsp<span>{{numberWithCommas(helpInfo.money)}}원</span></div>
       </div>
       <div class="card-content-right">
-        <span class="vacancy"></span>
+        <span class="vacancy">
+          <button v-if="isHelper" class="circle-button green" @click="accept(helpInfo)">
+            <span class="material-icons-outlined button-icon">
+              done
+            </span>
+          </button>
+        </span>
         <a v-if="helpInfo.requestStatus === 'ACCEPTED'" class="status" :href="`/profile/detail/${helpInfo.helperUserId}?helpId=${helpInfo.id}`" :class="getStatusColor(helpInfo.requestStatus)">{{getStatusName(helpInfo.requestStatus)}}</a>
         <span v-else class="status" :class="getStatusColor(helpInfo.requestStatus)">{{getStatusName(helpInfo.requestStatus)}}</span>
       </div>
@@ -35,6 +41,10 @@ export default{
     helpInfo: {
       type: Object,
       default: () => null
+    },
+    isHelper: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -105,6 +115,9 @@ export default{
         default:
           return ''
       }
+    },
+    accept(helpInfo) {
+      this.$axios.put(`/api/help/accept?helpId=${helpInfo.id}&helperId=2`)
     }
   }
 }
@@ -181,6 +194,7 @@ export default{
 
 .vacancy{
   min-height: 60px;
+  text-align: end;
 }
 
 .status{
@@ -199,6 +213,31 @@ export default{
 
 .accept{
   color: #913FC1;
+}
+
+
+.circle-button{
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border: 0;
+  background-color: transparent;
+  border-radius: 50%;
+  color: white;
+}
+
+.button-icon{
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.green{
+  background-color: #12C764;
+}
+
+.green:hover{
+  background-color: #00AD50;
+  cursor: pointer;
 }
 
 
