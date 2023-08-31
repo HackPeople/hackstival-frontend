@@ -1,72 +1,78 @@
 <!-- Please remove this file from your project -->
 <template>
   <div class="main-wrap">
-    <p>Categories</p>
+    <p class="category">도움 등록하기</p>
 
 <!--    <input type="text" id="address_kakao" name="address" readonly />-->
 <!--    <input type="text" name="address_detail" />-->
 
     <ul>
       <li v-for="(item, idx) in list" :key="idx">
-        {{item.name}}
+        <p>{{item.name}}</p>
+        <span class="material-icons-outlined">{{item.icon}}</span>
       </li>
     </ul>
   </div>
 </template>
 <script>
 export default {
-  head () {
-    return {
-      script: [
-        {
-          hid: 'stripe',
-          src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js',
-          defer: true,
-          // Changed after script load
-          callback: () => {
-            window.onload = function() {
-              document.getElementById("address_kakao").addEventListener("click", function () { //주소입력칸을 클릭하면
-                //카카오 지도 발생
-                new daum.Postcode({
-                  oncomplete: function (data) { //선택시 입력값 세팅
-                    document.getElementById("address_kakao").value = data.address; // 주소 넣기
-                    document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
-                  }
-                }).open();
-              });
-            }
-          }
-        }
-      ]
-    }
-  },
+  // head () {
+  //   return {
+  //     script: [
+  //       {
+  //         hid: 'stripe',
+  //         src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js',
+  //         defer: true,
+  //         // Changed after script load
+  //         callback: () => {
+  //           window.onload = function() {
+  //             document.getElementById("address_kakao").addEventListener("click", function () { //주소입력칸을 클릭하면
+  //               //카카오 지도 발생
+  //               new daum.Postcode({
+  //                 oncomplete: function (data) { //선택시 입력값 세팅
+  //                   document.getElementById("address_kakao").value = data.address; // 주소 넣기
+  //                   document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+  //                 }
+  //               }).open();
+  //             });
+  //           }
+  //         }
+  //       }
+  //     ]
+  //   }
+  // },
   data() {
     return {
       list: [
         {
-          name: '장소 A',
-          icon: '',
-          link :''
+          name: '방문요양',
+          icon: 'elderly',
+          type :''
         },
         {
-          name: '장소 B',
-          icon: '',
-          link :''
+          name: '병원동행',
+          icon: 'local_hospital',
+          type :''
         },
         {
-          name: '장소 C',
-          icon: '',
-          link :''
+          name: '가사도움',
+          icon: 'volunteer_activism',
+          type :''
         },
         {
-          name: '장소 D',
-          icon: '',
-          link :''
+          name: '교육진행',
+          icon: 'note_alt',
+          type :''
         },
         {
-          name: '장소 E',
+          name: '산책동행',
+          icon: 'escalator_warning',
+          type :''
+        },
+        {
+          name: '기타',
           icon: '',
-          link :''
+          type: ''
         }
       ]
     }
@@ -77,7 +83,7 @@ export default {
 .main-wrap {
   padding: 0 30px;
 
-  p {
+  .category {
     margin-top: 20px;
     font-size: 22px;
     font-weight: bold;
@@ -92,11 +98,18 @@ export default {
     margin-top: 20px;
 
     li {
-      width: calc(50% - 8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      width: calc(50% - 16px);
       background: white;
-      height: 215px;
+      height: 204px;
       text-align: center;
-      border: 1px solid #ccc;
+      border: 1px solid #e5e5e5;
+      box-shadow: -1px 3px 15px 0 rgba(0,0,0,.06);
+
       box-sizing: border-box;
       border-radius: 12px;
       margin: 0 10px 14px 0;
@@ -105,6 +118,19 @@ export default {
 
       &:nth-child(2n) {
         margin-right: 0;
+      }
+
+      p {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      span {
+        font-size: 72px;
       }
     }
   }
