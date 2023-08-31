@@ -28,12 +28,12 @@
       <div>
         <p>출발지 주소</p>
         <input type="text" id="address_kakao1" name="address" readonly/>
-        <input type="text" name="address_detail" placeholder="상세주소를 입력해 주세요. *" v-model="address1Detail"/>
+        <input type="text" name="address_detail1" placeholder="상세주소를 입력해 주세요. *" v-model="address1Detail"/>
       </div>
       <div>
         <p>도착지 주소</p>
         <input type="text" id="address_kakao2" name="address" readonly/>
-        <input type="text" name="address_detail" placeholder="상세주소를 입력해 주세요. *" v-model="address2Detail"/>
+        <input type="text" name="address_detail2" placeholder="상세주소를 입력해 주세요. *" v-model="address2Detail"/>
       </div>
 <!--      <div v-if="showCross">-->
 <!--        <p>편도왕복</p>-->
@@ -71,7 +71,7 @@ export default {
         oncomplete: (data) => { //선택시 입력값 세팅
           this.address1 = data.address;
           document.getElementById("address_kakao1").value = data.address; // 주소 넣기
-          document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+          document.querySelector("input[name=address_detail1]").focus(); //상세입력 포커싱
         }
       }).open();
     });
@@ -82,7 +82,7 @@ export default {
         oncomplete: (data) => { //선택시 입력값 세팅
           this.address2 = data.address;
           document.getElementById("address_kakao2").value = data.address; // 주소 넣기
-          document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+          document.querySelector("input[name=address_detail2]").focus(); //상세입력 포커싱
         }
       }).open();
     });

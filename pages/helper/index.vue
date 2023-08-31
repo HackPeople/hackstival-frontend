@@ -20,7 +20,7 @@
       </li>
     </ul>
 
-    <p class="category">도움 등록하기</p>
+    <p class="category">도움 신청 내역</p>
     <CardList :help-list="list"/>
   </div>
 </template>

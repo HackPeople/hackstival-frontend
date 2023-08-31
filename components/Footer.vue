@@ -78,7 +78,7 @@ div {
       color: #000;
 
       &.active {
-        color: #2478FF;
+        color: #503D32;
       }
 
       a {

@@ -1,9 +1,13 @@
 <!-- Please remove this file from your project -->
 <template>
   <div class="main-wrap">
-    <p class="category">진행중인 도움 목록</p>
-    <CardList :help-list="computedHelpList"/>
-    <p class="category">도움 등록하기</p>
+
+    <div class="top">
+      <p class="category">도움 등록 내역</p>
+      <CardList :help-list="computedHelpList"/>
+    </div>
+
+    <p class="category">등록하기</p>
     <ul>
       <li v-for="(item, idx) in list" :key="idx" @click="goRouter(item)">
         <p>{{item.name}}</p>
@@ -79,6 +83,10 @@ export default {
 <style scoped lang="scss">
 .main-wrap {
   padding: 0 30px;
+
+  .top {
+    margin-bottom: 20px;
+  }
 
   .category {
     margin-top: 20px;
