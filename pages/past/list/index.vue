@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="backgroud">
   <CardList/>
 </div>
 </template>
@@ -15,5 +15,4 @@ export default{
 }
 </script>
 <style>
-
 </style>
