@@ -23,8 +23,8 @@
       </div>
       <div class="card-content-right">
         <span class="vacancy"></span>
-        <a v-if="helpInfo.requestStatus === 'ACCEPTED'" class="status" href="/" :class="getStatusColor(helpInfo.requestStatus)">{{getStatusName(helpInfo.requestStatus)}}</a>
-        <span v-else class="status" href="/" :class="getStatusColor(helpInfo.requestStatus)">{{getStatusName(helpInfo.requestStatus)}}</span>
+        <a v-if="helpInfo.requestStatus === 'ACCEPTED'" class="status" :href="`/profile/detail/${helpInfo.helperUserId}?helpId=${helpInfo.id}`" :class="getStatusColor(helpInfo.requestStatus)">{{getStatusName(helpInfo.requestStatus)}}</a>
+        <span v-else class="status" :class="getStatusColor(helpInfo.requestStatus)">{{getStatusName(helpInfo.requestStatus)}}</span>
       </div>
     </div>
   </div>
@@ -99,6 +99,8 @@ export default{
         case 'ACCEPTED':
           return '승인 대기 > '
         case 'CONFIRMED':
+          return '매칭 완료'
+        case 'DONE':
           return '완료'
         default:
           return ''
