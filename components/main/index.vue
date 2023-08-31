@@ -61,7 +61,7 @@ export default {
   computed: {
     computedHelpList() {
       return this.helpList.filter((help) => {
-        return help.requestStatus === 'REQUEST' || help.requestStatus === 'ACCEPTED' ||  help.requestStatus === 'CONFIRMED'
+        return help.requestStatus === 'REQUEST' || help.requestStatus === 'ACCEPTED'
       })
     }
   },

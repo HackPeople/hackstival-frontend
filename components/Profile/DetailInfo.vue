@@ -33,10 +33,17 @@
       <button class="select-button select-button-1" @click="accept">
         수락하기
       </button>
-      <button class="select-button select-button-2">
-        거절하기
+      <button class="select-button select-button-2" @click="goBack">
+        목록으로
       </button>
     </div>
+
+    <b-modal id="bv-modal-example" hide-footer>
+      <div class="d-block text-center">
+        <h3>수락되었습니다!</h3>
+      </div>
+      <b-button class="mt-3" block @click="close">확인</b-button>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -59,10 +66,17 @@ export default {
     async accept() {
       try {
         await this.$axios.$put(`/api/help/confirm?helpId=${this.helpId}&helperId=${this.helperId}`)
-        this.$router.push('/past/list')
+        this.$bvModal.show('bv-modal-example')
       } catch(e){
         console.log('에러 발생', e)
       }
+    },
+    goBack() {
+      history.back()
+    },
+    close() {
+      this.$bvModal.hide('bv-modal-example')
+      this.$router.push('/past/list')
     }
   }
 }
@@ -70,7 +84,7 @@ export default {
 <style scoped>
 .profile-inner-wrap {
   display: flex;
-  height: 100px;
+  height: 100%;
   margin-top: 20px;
   flex-direction: column;
   align-items: center;
@@ -78,7 +92,7 @@ export default {
 }
 
 .image {
-  height: 100%;
+  height: 100px;
   border-radius: 50%;
   z-index: 10;
 }
@@ -89,7 +103,7 @@ export default {
   align-items: center;
   padding-top: 80px;
   margin-top: -50px;
-  min-height: 300px;
+  height: 400px;
   width: 80%;
   border: 1px solid #e5e5e5;
   border-radius: 12px;
