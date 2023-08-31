@@ -28,6 +28,8 @@ export default {
   .inner {
     position: relative;
     top: 80px;
+    padding-bottom: 65px;
+    box-sizing: border-box;
   }
 }
 </style>

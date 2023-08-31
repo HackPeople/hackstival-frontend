@@ -46,6 +46,7 @@ export default {
 </script>
 <style scoped lang="scss">
 div {
+  box-sizing: border-box;
   position: fixed;
   bottom: 0;
   left: 50%;
