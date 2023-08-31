@@ -24,14 +24,6 @@ export default{
       return 'face'
     }
   },
-  head () {
-    return {
-      link: [
-        // Add this
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
-      ],
-    }
-  },
   data() {
     return {
 
