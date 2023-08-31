@@ -82,7 +82,7 @@ export default {
       this.map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
 
-      const imageSrc = 'http://localhost:3000/_nuxt/assets/image/free-icon.png' // 마커이미지의 주소입니다
+      const imageSrc = 'http://3.36.117.65:3000/_nuxt/assets/image/free-icon.png' // 마커이미지의 주소입니다
       const imageSize = new kakao.maps.Size(28, 29); // 마커 이미지의 이미지 크기 입니다
       const imageOption = { offset: new kakao.maps.Point(8, 27) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption); // 마커 이미지를 생성합니다
