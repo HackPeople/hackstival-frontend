@@ -1,13 +1,11 @@
 <!-- Please remove this file from your project -->
 <template>
   <div class="main-wrap">
+    <CardList/>
     <p class="category">도움 등록하기</p>
 
-<!--    <input type="text" id="address_kakao" name="address" readonly />-->
-<!--    <input type="text" name="address_detail" />-->
-
     <ul>
-      <li v-for="(item, idx) in list" :key="idx">
+      <li v-for="(item, idx) in list" :key="idx" @click="goRouter(item)">
         <p>{{item.name}}</p>
         <span class="material-icons-outlined">{{item.icon}}</span>
       </li>
@@ -15,68 +13,52 @@
   </div>
 </template>
 <script>
+import CardList from "~/components/list/past/CardList.vue";
+
 export default {
-  // head () {
-  //   return {
-  //     script: [
-  //       {
-  //         hid: 'stripe',
-  //         src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js',
-  //         defer: true,
-  //         // Changed after script load
-  //         callback: () => {
-  //           window.onload = function() {
-  //             document.getElementById("address_kakao").addEventListener("click", function () { //주소입력칸을 클릭하면
-  //               //카카오 지도 발생
-  //               new daum.Postcode({
-  //                 oncomplete: function (data) { //선택시 입력값 세팅
-  //                   document.getElementById("address_kakao").value = data.address; // 주소 넣기
-  //                   document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
-  //                 }
-  //               }).open();
-  //             });
-  //           }
-  //         }
-  //       }
-  //     ]
-  //   }
-  // },
+  components: {CardList},
   data() {
     return {
       list: [
         {
           name: '방문요양',
           icon: 'elderly',
-          type :''
+          type: 'VISITING_CARE'
         },
         {
           name: '병원동행',
           icon: 'local_hospital',
-          type :''
+          type: 'HOSPITAL_WITH'
         },
         {
           name: '가사도움',
           icon: 'volunteer_activism',
-          type :''
+          type: 'HOUSEKEEPING'
         },
         {
           name: '교육진행',
           icon: 'note_alt',
-          type :''
+          type: 'EDUCATION'
         },
         {
           name: '산책동행',
           icon: 'escalator_warning',
-          type :''
+          type: 'WALK_WITH'
         },
         {
           name: '기타',
           icon: '',
-          type: ''
+          type: 'ETC'
         }
       ]
     }
   },
+  methods: {
+    goRouter(item) {
+      this.$store.commit('add/setCategoryInfo', item)
+      this.$router.push(`/add`)
+    }
+  }
 }
 </script>
 <style scoped lang="scss">
