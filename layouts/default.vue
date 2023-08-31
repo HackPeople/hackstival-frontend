@@ -1,7 +1,9 @@
 <template>
   <div id="app" class="main">
     <Header />
-    <Nuxt />
+    <div class="inner">
+      <Nuxt />
+    </div>
     <Footer />
   </div>
 </template>
@@ -16,12 +18,16 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped lang="scss">
 .main {
   background-color: #fff;
   width: 500px;
   margin: auto;
   height: 100vh;
-  padding-top: 20px;
+
+  .inner {
+    position: relative;
+    top: 80px;
+  }
 }
 </style>
