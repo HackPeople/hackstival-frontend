@@ -47,12 +47,12 @@ export default {
       default: () => {}
     },
     helperId: {
-      type: Number,
-      default: 0
+      type: String,
+      default: '0'
     },
     helpId: {
-      type: Number,
-      default: 0
+      type: String,
+      default: '0'
     }
   },
   methods: {

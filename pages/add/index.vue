@@ -9,26 +9,36 @@
       </div>
       <div>
         <p>도움일시</p>
-        <!--  TODO: v-model="date"   -->
+        <b-form-datepicker
+            id="start-datepicker"
+            v-model="date"
+            class="mb-2"
+        ></b-form-datepicker>
+        <b-form-timepicker v-model="time" locale="en"></b-form-timepicker>
       </div>
       <div>
         <p>이동방법</p>
         <ul class="move-list-wrap">
           <li v-for="(item, idx) in moveList" :key="idx">
-            <label :for="item.name">{{ item.name }}</label>
             <input :id="item.name" type="radio" v-model="radioValues" :value="item.value">
+            <label :for="item.name">{{ item.name }}</label>
           </li>
         </ul>
       </div>
       <div>
-        <p>도착지주소</p>
-        <input type="text" id="address_kakao" name="address" readonly/>
-        <input type="text" name="address_detail" placeholder="상세주소를 입력해 주세요. *" v-model="address2"/>
+        <p>출발지 주소</p>
+        <input type="text" id="address_kakao1" name="address" readonly/>
+        <input type="text" name="address_detail" placeholder="상세주소를 입력해 주세요. *" v-model="address1Detail"/>
       </div>
-      <div v-if="showCross">
-        <p>편도왕복</p>
-        <input type="checkbox" v-model="cross" />
+      <div>
+        <p>도착지 주소</p>
+        <input type="text" id="address_kakao2" name="address" readonly/>
+        <input type="text" name="address_detail" placeholder="상세주소를 입력해 주세요. *" v-model="address2Detail"/>
       </div>
+<!--      <div v-if="showCross">-->
+<!--        <p>편도왕복</p>-->
+<!--        <input type="checkbox" v-model="cross" />-->
+<!--      </div>-->
       <div>
         <p>용돈금액</p>
         <input type="number" placeholder="금액을 입력해 주세요. *" v-model="money"/>
@@ -55,12 +65,23 @@ export default {
   },
   mounted() {
     console.log(true)
-    document.getElementById("address_kakao").addEventListener("click", () => { //주소입력칸을 클릭하면
+    document.getElementById("address_kakao1").addEventListener("click", () => { //주소입력칸을 클릭하면
       //카카오 지도 발생
       new daum.Postcode({
         oncomplete: (data) => { //선택시 입력값 세팅
           this.address1 = data.address;
-          document.getElementById("address_kakao").value = data.address; // 주소 넣기
+          document.getElementById("address_kakao1").value = data.address; // 주소 넣기
+          document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+        }
+      }).open();
+    });
+
+    document.getElementById("address_kakao2").addEventListener("click", () => { //주소입력칸을 클릭하면
+      //카카오 지도 발생
+      new daum.Postcode({
+        oncomplete: (data) => { //선택시 입력값 세팅
+          this.address2 = data.address;
+          document.getElementById("address_kakao2").value = data.address; // 주소 넣기
           document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
         }
       }).open();
@@ -78,23 +99,22 @@ export default {
     return{
       moveList: [
         {
-          name: '도보',
-          value: '도보'
+          name: '편도',
+          value: 'DIRECT'
         },
         {
-          name: '차량',
-          value: '차량'
-        },
-        {
-          name: '무관',
-          value: '무관'
+          name: '왕복',
+          value: 'ROUND'
         }
       ],
       detail: '', //세부내용
       date: '', //도움일시
+      time: '',
       radioValues: '도보',  //이동방법
-      address1: '', //도착지주소
-      address2: '', //상세주소
+      address1: '',
+      address1Detail: '',
+      address2: '',
+      address2Detail: '',
       cross: false, //편도왕복
       money: '', //용돈금액
 
@@ -121,6 +141,28 @@ export default {
     },
     submit() {
       if(this.confirm) {
+          this.$axios.post('/api/help', {
+            content: this.detail,
+            startTime: this.date + ' ' + this.time,
+            endTime: this.date + ' ' + this.time,
+            requestType: this.categoryInfo.type,
+            startAddress: {
+              doName: this.address1,
+              siName: this.address1,
+              dongName: this.address1Detail
+            },
+            destinationAddress: {
+              doName: this.address2,
+              siName: this.address2,
+              dongName: this.address2Detail
+            },
+            moveType: this.radioValues,
+            money: this.money,
+            oldUserId: 2,
+            // helperUserId: 0,
+            requestStatus: "REQUEST"
+          })
+          this.$router.push('')
 
       }
     }
@@ -236,4 +278,5 @@ export default {
     }
   }
 }
+
 </style>

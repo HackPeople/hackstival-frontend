@@ -1,9 +1,9 @@
 <!-- Please remove this file from your project -->
 <template>
   <div class="main-wrap">
-    <CardList/>
+    <p class="category">진행중인 도움 목록</p>
+    <CardList :help-list="computedHelpList"/>
     <p class="category">도움 등록하기</p>
-
     <ul>
       <li v-for="(item, idx) in list" :key="idx" @click="goRouter(item)">
         <p>{{item.name}}</p>
@@ -19,6 +19,7 @@ export default {
   components: {CardList},
   data() {
     return {
+      helpList: [],
       list: [
         {
           name: '방문요양',
@@ -53,7 +54,21 @@ export default {
       ]
     }
   },
+  computed: {
+    computedHelpList() {
+      return this.helpList.filter((help) => {
+        return help.requestStatus === 'REQUEST' || help.requestStatus === 'ACCEPTED' ||  help.requestStatus === 'CONFIRMED'
+      })
+    }
+  },
+  mounted() {
+    this.getAllList()
+  },
   methods: {
+    async getAllList(){
+      const response = await this.$axios.$get('/api/help/all')
+      this.helpList = response
+    },
     goRouter(item) {
       this.$store.commit('add/setCategoryInfo', item)
       this.$router.push(`/add`)
