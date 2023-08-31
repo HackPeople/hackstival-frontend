@@ -162,8 +162,7 @@ export default {
             // helperUserId: 0,
             requestStatus: "REQUEST"
           })
-          this.$router.push('')
-
+          this.$router.push('/add/finish')
       }
     }
   }
