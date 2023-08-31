@@ -1,13 +1,16 @@
 <template>
   <div class="head-wrap">
-      <h1>Header LOGO</h1>
+    <NuxtLink to="/">
+      <img src="@/assets/image/logo.png" />
+    </NuxtLink>
   </div>
 </template>
 <style scoped lang="scss">
 .head-wrap {
   height: 80px;
   width: 500px;
-  background: skyblue;
+  background: #FEDE9D;
+  box-shadow: 0 0 8px 0 rgba(0,0,0,.12);
 
   position: fixed;
   top: 0;
@@ -16,10 +19,11 @@
   right: 0;
   z-index: 20;
 
-  h1 {
-    //margin: 0 0 20px 20px;
-    color: orange;
-    font-size: 30px;
+  img {
+    width: auto;
+    height: 110px;
+    margin-top: -11px;
+    cursor: pointer;
   }
 }
 </style>
