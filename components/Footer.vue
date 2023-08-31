@@ -21,6 +21,11 @@ export default {
     return {
       list: [
         {
+          name: '홈',
+          icon: 'home',
+          link: '/',
+        },
+        {
           name: '목록',
           icon: 'list',
           link: '/past/list',
@@ -62,7 +67,7 @@ div {
   ul {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 0 25px;
 
     li {
