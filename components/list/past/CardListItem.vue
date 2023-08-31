@@ -2,8 +2,8 @@
   <div class="card-group">
     <div class="list-item">
       <div class="icon-wrap">
-        <span class="icon" :class="computedIconClass">
-          {{computedIconContent}}
+        <span class="icon" :class="getIconClass(helpInfo.requestType)">
+          {{getIconContent(helpInfo.requestType)}}
         </span>
       </div>
       <div class="v-line"></div>
@@ -19,11 +19,12 @@
           </span>
           <span>{{helpInfo.destinationAddress.siName}}</span>
         </div>
-        <div class="money">용돈<span>{{numberWithCommas(helpInfo.money)}}원</span></div>
+        <div class="money">용돈&nbsp<span>{{numberWithCommas(helpInfo.money)}}원</span></div>
       </div>
       <div class="card-content-right">
         <span class="vacancy"></span>
-        <span class="status">완료</span>
+        <a v-if="helpInfo.requestStatus === 'ACCEPTED'" class="status" href="/" :class="getStatusColor(helpInfo.requestStatus)">{{getStatusName(helpInfo.requestStatus)}}</a>
+        <span v-else class="status" href="/" :class="getStatusColor(helpInfo.requestStatus)">{{getStatusName(helpInfo.requestStatus)}}</span>
       </div>
     </div>
   </div>
@@ -37,12 +38,6 @@ export default{
     }
   },
   computed: {
-    computedIconClass() {
-      return 'material-icons'
-    },
-    computedIconContent() {
-      return 'face'
-    }
   },
   data() {
     return {
@@ -52,6 +47,62 @@ export default{
   methods: {
     numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    getIconClass(requestType) {
+      switch (requestType) {
+        case 'VISITING_CARE':
+          return 'material-icons-outlined'
+        case 'HOSPITAL_WITH':
+          return 'material-icons-outlined'
+        case 'HOUSEKEEPING':
+          return 'material-icons-outlined'
+        case 'EDUCATION':
+          return 'material-icons-outlined'
+        case 'WALK_WITH':
+          return 'material-icons-outlined'
+        default:
+          return 'material-icons-outlined'
+      }
+    },
+    getIconContent(requestType) {
+      switch (requestType) {
+        case 'VISITING_CARE':
+          return 'elderly'
+        case 'HOSPITAL_WITH':
+          return 'local_hospital'
+        case 'HOUSEKEEPING':
+          return 'volunteer_activism'
+        case 'EDUCATION':
+          return 'note_alt'
+        case 'WALK_WITH':
+          return 'escalator_warning'
+        default:
+          return 'elderly'
+      }
+    },
+    getStatusColor(status) {
+      switch (status) {
+        case 'REQUEST':
+          return 'wait'
+        case 'ACCEPTED':
+          return 'accept'
+        case 'CONFIRMED':
+          return 'fin'
+        default:
+          return ''
+      }
+    },
+    getStatusName(status){
+      switch (status) {
+        case 'REQUEST':
+          return '대기중...'
+        case 'ACCEPTED':
+          return '승인 대기 > '
+        case 'CONFIRMED':
+          return '완료'
+        default:
+          return ''
+      }
     }
   }
 }
@@ -131,9 +182,21 @@ export default{
 }
 
 .status{
-  color: #e6007e;
+  text-decoration-line: none;
   text-align: end;
   padding-right: 10px;
+}
+
+.fin{
+  color: #5BA49B;
+}
+
+.wait{
+  color: #E2BC50;
+}
+
+.accept{
+  color: #913FC1;
 }
 
 
