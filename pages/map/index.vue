@@ -163,10 +163,10 @@ export default {
         background-color: #fff;
         width: 100%;
         max-width: 100%;
-        height: 32px;
-        line-height: 32px;
+        height: 30px;
+        line-height: 30px;
         box-sizing: border-box;
-        padding: 0 22px 0 10px;
+        padding: 0 0 0 10px;
         border-radius: 4px;
         border: 1px solid #ccc;
         font-size: 18px;
