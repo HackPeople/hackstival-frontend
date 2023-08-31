@@ -3,6 +3,7 @@
     <NuxtLink to="/">
       <img src="@/assets/image/logo.png" />
     </NuxtLink>
+    <img src="@/assets/image/free-icon.png" style="width:0" />
   </div>
 </template>
 <style scoped lang="scss">

@@ -28,6 +28,7 @@ export default {
   .inner {
     position: relative;
     top: 80px;
+    height: 100%;
     padding-bottom: 65px;
     box-sizing: border-box;
   }
