@@ -1,6 +1,6 @@
 <template>
 <div>
-  <CardList/>
+  <CardList :help-list="list"/>
 </div>
 </template>
 <script>
@@ -10,10 +10,20 @@ export default{
     CardList
   },
   data() {
-
+    return {
+      list: []
+    }
+  },
+  mounted() {
+    this.getAllList()
+  },
+  methods: {
+    async getAllList(){
+      const response = await this.$axios.$get('/api/help/all')
+      this.list = response
+    }
   }
 }
 </script>
 <style>
-
 </style>

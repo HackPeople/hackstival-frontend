@@ -13,7 +13,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined' }
     ]
   },
 
@@ -23,8 +24,11 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: ['~/plugins/bootstrap.js'],
+
+  bootstrapVue: {
+    icons: true,
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -35,7 +39,35 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'bootstrap-vue/nuxt',
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
+
+  // env:{
+  //   AXIOS_BASE_URL: process.env.AXIOS_BASE_URL,  //front 도메인 주소
+  //   API_DEV:process.env.API_DEV,  // backend 도메인 주소
+  //   API_DEV_CDN:process.env.API_DEV_CDN, // aws s3 cdn 주소
+  // },
+  axios: {
+    proxy:true,
+    baseURL: 'http://localhost:3000',
+    proxyHeaders: false,
+    credentials: false
+  },
+  proxy: {
+    '/api/': {
+      target: 'http://3.36.117.65:8080/',
+      pathRewrite: { '^/api': '' },
+      changeOrigin: true
+    },
+    // '/cdn/': {
+    //   target: process.env.API_DEV_CDN,
+    //   pathRewrite: { '^/cdn': '' },
+    //   changeOrigin: true
+    // }
+  },
+
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
