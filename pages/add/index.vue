@@ -158,7 +158,7 @@ export default {
             },
             moveType: this.radioValues,
             money: this.money,
-            oldUserId: 2,
+            oldUserId: 1,
             // helperUserId: 0,
             requestStatus: "REQUEST"
           })

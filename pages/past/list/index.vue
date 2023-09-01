@@ -19,7 +19,7 @@ export default{
   },
   methods: {
     async getAllList(){
-      const response = await this.$axios.$get('/help/all')
+      const response = await this.$axios.$get(`/olduser/helps?oldUserId=1`)
       this.list = response
     }
   }
