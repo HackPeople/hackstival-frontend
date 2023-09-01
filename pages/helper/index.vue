@@ -41,8 +41,8 @@ export default {
   methods: {
     async getAllList(){
       try {
-        this.totalInfo = await this.$axios.$get('/helper/statistics?helperId=2')
-        this.list = await this.$axios.$get('/helper/requests')
+        this.totalInfo = await this.$axios.$get('/api/helper/statistics?helperId=2')
+        this.list = await this.$axios.$get('/api/helper/requests')
       } catch (e) {}
     }
   }

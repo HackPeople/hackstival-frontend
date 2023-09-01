@@ -141,7 +141,7 @@ export default {
     },
     submit() {
       if(this.confirm) {
-          this.$axios.post('/help', {
+          this.$axios.post('/api/help', {
             content: this.detail,
             startTime: this.date + ' ' + this.time,
             endTime: this.date + ' ' + this.time,

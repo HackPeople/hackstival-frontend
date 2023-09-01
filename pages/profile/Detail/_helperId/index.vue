@@ -25,7 +25,7 @@ export default{
   },
   methods: {
     async getHelperInfo(id){
-      this.helperInfo = await this.$axios.$get(`/user?userId=${id}`)
+      this.helperInfo = await this.$axios.$get(`/api/user?userId=${id}`)
     }
   }
 }

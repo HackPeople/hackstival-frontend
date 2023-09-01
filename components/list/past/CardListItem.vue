@@ -124,7 +124,7 @@ export default{
       }
     },
     accept(helpInfo) {
-      this.$axios.put(`/help/accept?helpId=${helpInfo.id}&helperId=2`)
+      this.$axios.put(`/api/help/accept?helpId=${helpInfo.id}&helperId=2`)
       this.$bvModal.show('bv-modal-example')
     },
     close() {
