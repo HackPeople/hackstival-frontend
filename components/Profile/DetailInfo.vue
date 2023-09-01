@@ -65,7 +65,7 @@ export default {
   methods: {
     async accept() {
       try {
-        await this.$axios.$put(`/api/help/confirm?helpId=${this.helpId}&helperId=${this.helperId}`)
+        await this.$axios.$put(`/help/confirm?helpId=${this.helpId}&helperId=${this.helperId}`)
         this.$bvModal.show('bv-modal-example')
       } catch(e){
         console.log('에러 발생', e)
