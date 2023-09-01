@@ -50,10 +50,10 @@ export default {
   //   API_DEV_CDN:process.env.API_DEV_CDN, // aws s3 cdn 주소
   // },
   axios: {
-    proxy:false,
-    baseURL: 'http://localhost:8080',
-    proxyHeaders: false,
-    credentials: false
+    // proxy:false,
+    baseURL: '/',
+    // proxyHeaders: false,
+    // credentials: false
   },
   // proxy: {
   //   '/api/': {
