@@ -51,22 +51,22 @@ export default {
   // },
   axios: {
     proxy:false,
-    baseURL: 'http://3.36.117.65:3000/',
+    baseURL: 'http://3.36.117.65:8080',
     proxyHeaders: false,
     credentials: false
   },
-  proxy: {
-    '/api/': {
-      target: 'http://3.36.117.65:8080/',
-      pathRewrite: { '^/api': '' },
-      changeOrigin: true
-    },
-    // '/cdn/': {
-    //   target: process.env.API_DEV_CDN,
-    //   pathRewrite: { '^/cdn': '' },
-    //   changeOrigin: true
-    // }
-  },
+  // proxy: {
+  //   '/api/': {
+  //     target: 'http://43.202.0.230:8080/',
+  //     pathRewrite: { '^/api': '' },
+  //     changeOrigin: true
+  //   },
+  //   // '/cdn/': {
+  //   //   target: process.env.API_DEV_CDN,
+  //   //   pathRewrite: { '^/cdn': '' },
+  //   //   changeOrigin: true
+  //   // }
+  // },
 
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
